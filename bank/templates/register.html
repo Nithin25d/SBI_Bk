@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <h1>SBI Registration</h1>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Register
+        </button>
+
+    </form>
+
+    <p>Already have an account? <a href="/login/">Login here</a></p>
+
+</body>
+</html>

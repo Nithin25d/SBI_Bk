@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Account Type</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🏦 SBI Bank</h1>
+        <p>Select Your Account Type</p>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Choose Your Account Type</h1>
+            {% if error %}<p style="color:red;">{{ error }}</p>{% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="account-options">
+                    <label class="account-option">
+                        <input type="radio" name="account_type" value="savings" required>
+                        <div class="account-type-emoji">💰</div>
+                        <div class="option-label">Savings Account</div>
+                        <p style="font-size: 0.9em; color: #666;">Interest on deposits</p>
+                    </label>
+
+                    <label class="account-option">
+                        <input type="radio" name="account_type" value="current">
+                        <div class="account-type-emoji">💼</div>
+                        <div class="option-label">Current Account</div>
+                        <p style="font-size: 0.9em; color: #666;">For businesses</p>
+                    </label>
+
+                    <label class="account-option">
+                        <input type="radio" name="account_type" value="personal">
+                        <div class="account-type-emoji">👤</div>
+                        <div class="option-label">Personal Account</div>
+                        <p style="font-size: 0.9em; color: #666;">Everyday banking</p>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary" style="margin-top: 2rem;">Create Account</button>
+            </form>
+
+            <p style="margin-top: 1rem; color: #666;">
+                <a href="/login/" style="color: #1e40af; text-decoration: none;">Back to Login</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SBI Bank. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bills & Payments</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🏦 SBI Bank</h1>
+        <p>Bills & Payments</p>
+        <div class="nav">
+            <a href="/dashboard/">Dashboard</a>
+            <a href="/logout/">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Your Bills</h1>
+        
+        {% if bills_list %}
+        <div class="bills-list">
+            {% for bill in bills_list %}
+            <div class="bill-item">
+                <div class="bill-details">
+                    <strong>{{ bill.biller_name }}</strong>
+                    <p>Amount: ₹{{ bill.amount|floatformat:2 }}</p>
+                    <p>Due: {{ bill.due_date|date:"M d, Y" }}</p>
+                    <span class="bill-status {% if bill.status == 'pending' %}pending{% endif %}">{{ bill.status|title }}</span>
+                </div>
+                {% if bill.status == 'pending' %}
+                <span class="note">Awaiting external payment</span>
+                {% endif %} 
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No bills found. <a href="/dashboard/">Return to dashboard</a></p>
+        {% endif %}
+    </div>
+
+    <footer><p>&copy; 2026 SBI Bank. All rights reserved.</p></footer>
+</body>
+</html>

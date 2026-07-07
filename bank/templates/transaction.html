@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🏦 SBI Bank</h1>
+        <p>Received & Withdrawal</p>
+        <div class="nav">
+            <a href="/dashboard/">Dashboard</a>
+            <a href="/logout/">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Transaction</h1>
+            {% if error %}<p style="color:red; padding:1rem; background:#fee; border-radius:8px;">{{ error }}</p>{% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <div style="display:flex; gap:1rem;">
+                    <button type="submit" name="action" value="deposit" class="btn-primary">Received 💰</button>
+                    <button type="submit" name="action" value="withdraw" class="btn-secondary">Withdrawal 💸</button>
+                </div>
+            </form>
+
+            <p style="margin-top:2rem; color:#666;">Current Balance: <strong>₹{{ account.balance|floatformat:2 }}</strong></p>
+        </div>
+    </div>    
+
+    <footer><p>&copy; 2026 SBI Bank. All rights reserved.</p></footer>
+</body>
+</html>

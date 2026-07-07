@@ -1,0 +1,307 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #1e40af;
+    --primary-dark: #1e3a8a;
+    --primary-light: #3b82f6;
+    --secondary: #dc2626;
+    --success: #16a34a;
+    --warning: #ea580c;
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+html, body {
+    font-family: '"'"'Segoe UI'"'"', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.nav {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.nav a, .nav button {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav a:hover, .nav button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.form-container {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    max-width: 520px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.form-container h1 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input, textarea, select {
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin: 0.5rem auto;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.08);
+}
+
+label {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(30, 64, 175, 0.3);
+}
+
+.btn-secondary {
+    background: var(--warning);
+    color: white;
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.error-message {
+    padding: 1rem;
+    border-radius: 8px;
+    background: rgba(220, 38, 38, 0.1);
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.balance-display {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.account-type {
+    display: inline-block;
+    background: var(--primary-light);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.account-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.account-option {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.account-option:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+}
+
+.transaction-table {
+    width: calc(100% - 40px);
+    max-width: 1000px;
+    margin: 1rem auto;
+    border-collapse: collapse;
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.transaction-table thead {
+    background: var(--primary);
+    color: white;
+}
+
+.transaction-table th,
+.transaction-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.transaction-table tbody tr:hover {
+    background-color: var(--background);
+}
+
+.home-container {
+    text-align: center;
+    padding: 3.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-container h1 {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.home-container h2 {
+    font-size: 1.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.button-group button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    min-width: 200px;
+}
+
+footer {
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}

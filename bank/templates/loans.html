@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loans</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🏦 SBI Bank</h1>
+        <p>Loan Management</p>
+        <div class="nav">
+            <a href="/dashboard/">Dashboard</a>
+            <a href="/logout/">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Your Loans</h1>
+        
+        {% if loans_list %}
+        <div class="loans-list">
+            {% for loan in loans_list %}
+            <div class="loan-item">
+                <div class="loan-details">
+                    <strong>{{ loan.get_loan_type_display }}</strong>
+                    <p>Principal: ₹{{ loan.amount|floatformat:2 }}</p>
+                    <p>Monthly EMI: ₹{{ loan.monthly_emi|floatformat:2 }}</p>
+                    <p>Tenure: {{ loan.tenure_months }} months</p>
+                    <span class="loan-status">{{ loan.status|title }}</span>
+                </div>
+                <div class="loan-amount">
+                    Balance<br>₹{{ loan.balance|floatformat:2 }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>No loans found. <a href="/dashboard/">Return to dashboard</a></p>
+        {% endif %}
+    </div>
+
+    <footer><p>&copy; 2026 SBI Bank. All rights reserved.</p></footer>
+</body>
+</html>

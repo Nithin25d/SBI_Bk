@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🏦 SBI Bank Dashboard</h1>
+        <p>Welcome, {{ customer.name }}</p>
+        <div class="nav">
+            <a href="/select-account/">Switch Account</a>
+            <a href="/transaction/">Transaction</a>
+            <a href="/cards/">Cards</a>
+            <a href="/loans/">Loans</a>
+            <a href="/bills/">Bills</a>
+            <a href="/support/">Support</a>
+            <a href="/logout/">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>Account Details</h3>
+                <p><strong>Type:</strong> <span class="account-type">{{ account.get_account_type_display }}</span></p>
+                <p><strong>Account:</strong> {{ account.account_number }}</p>
+                <p><strong>Since:</strong> {{ account.created_at|date:"M d, Y" }}</p>
+            </div>
+
+            <div class="card">
+                <h3>💰 Available Balance</h3>
+                <div class="balance-display">₹{{ account.balance|floatformat:2 }}</div>
+                <p>Rate: {{ account.interest_rate }}% p.a.</p>
+            </div>
+
+            <div class="card">
+                <h3>Quick Links</h3>
+                <a href="/transaction/" style="display:block; margin:0.5rem 0; color:#1e40af; text-decoration:none;">➕ Received / Withdrawal</a>
+                <a href="/transaction-history/" style="display:block; margin:0.5rem 0; color:#1e40af; text-decoration:none;">📋 History</a>
+                <a href="/bills/" style="display:block; margin:0.5rem 0; color:#1e40af; text-decoration:none;">💳 Bills</a>
+            </div>
+        </div>
+
+        <h2 style="margin-top:2rem;">📊 Recent Transactions</h2>
+        {% if transactions %}
+        <table class="transaction-table">
+            <thead>
+                <tr><th>Date</th><th>Type</th><th>Amount (₹)</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+                {% for txn in transactions %}
+                <tr>
+                    <td>{{ txn.date|date:"M d H:i" }}</td>
+                    <td><span class="transaction-type {{ txn.transaction_type }}">{% if txn.transaction_type == 'deposit' %}Received{% elif txn.transaction_type == 'withdraw' %}Withdrawal{% elif txn.transaction_type == 'payment' %}Payment{% else %}{{ txn.get_transaction_type_display }}{% endif %}</span></td> 
+                    <td>{{ txn.amount|floatformat:2 }}</td>
+                    <td>{{ txn.status|title }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/transaction-history/" style="color:#1e40af; text-decoration:none; margin-top:1rem; display:inline-block;">View All →</a>
+        {% else %}
+        <p>No transactions yet. <a href="/transaction/">Make your first transaction</a></p>
+        {% endif %}
+    </div>
+
+    <footer><p>&copy; 2026 SBI Bank. All rights reserved.</p></footer>
+</body>
+</html>

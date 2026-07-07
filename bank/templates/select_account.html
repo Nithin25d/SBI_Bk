@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Account</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>🏦 SBI Bank</h1>
+        <p>Welcome, {{ customer.name }}</p>
+        <div class="nav">
+            <a href="/logout/">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <h1>Select Your Account</h1>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="account-options">
+                    {% for account in accounts %}
+                    <label class="account-selector">
+                        <input type="radio" name="account_id" value="{{ account.id }}" required>
+                        <div class="selector-content">
+                            <div class="account-type-emoji"
+                                {% if account.account_type == 'savings' %}💰{% elif account.account_type == 'current' %}💼{% else %}👤{% endif %}>
+                            </div>
+                            <strong>{{ account.get_account_type_display }}</strong><br>
+                            Account: {{ account.account_number }}<br>
+                            Balance: ₹{{ account.balance|floatformat:2 }}
+                        </div>
+                    </label>
+                    {% endfor %}
+                </div>
+
+                <button type="submit" class="btn-primary" style="margin-top: 2rem;">Select Account</button>
+            </form>
+
+            <p style="margin-top: 1rem;">
+                <a href="/select-account-type/" style="color: #1e40af; text-decoration: none;">+ Create New Account</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SBI Bank. All rights reserved.</p>
+    </footer>
+</body>
+</html>
